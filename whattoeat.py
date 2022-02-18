@@ -80,10 +80,11 @@ async def download_async(url: str, save_path: str, save_name: str, auto_extensio
         f.write(content)
         return abs_path
 
+# Todo
 @sv.on_prefix('添菜')
 async def add_food(bot: KokkoroBot, ev: EventInterface):
     #if not priv.check_priv(ev, priv.ADMIN):
-    if not priv.check_priv(ev.get_author(), priv.ADMIN)
+    if not priv.check_priv(ev.get_author(), priv.ADMIN):
         await bot.kkr_send(ev,'此命令仅管理员可用~')
         return
     #food = ev.message.extract_plain_text().strip()
@@ -94,8 +95,8 @@ async def add_food(bot: KokkoroBot, ev: EventInterface):
     if not ret:
         await bot.kkr_send(ev,'请附带美食图片~')
         return
-    hash = ret.group(1)
-    url = ret.group(2)
+    #hash = ret.group(1)
+    url = ev.get_content()
     savepath = os.path.join(os.path.expanduser(RES_DIR), 'img', 'foods')
     if not os.path.exists(savepath):
         os.mkdir(savepath)
